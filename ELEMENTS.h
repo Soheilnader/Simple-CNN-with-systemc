@@ -172,3 +172,86 @@ public:
 	}
 	void counting();
 };
+
+// Memory: Templated memory w/ datain, dataout, chip-select, read-write-bar
+template<int ADDRESS, int WORD_LENGTH>
+class Memory : public sc_module {
+public:
+	sc_in<sc_lv<ADDRESS>> addr;
+	sc_in<sc_lv<WORD_LENGTH>> datain;
+	sc_out<sc_lv<WORD_LENGTH>> dataout;
+	sc_in<sc_logic> cs, rwbar;
+
+	int addrSpace;
+	sc_uint <WORD_LENGTH> *mem;
+
+	void meminit();
+	void memread();
+	void memwrite();
+	void memdump();
+
+	SC_HAS_PROCESS(Memory);
+	Memory(sc_module_name);
+};
+
+template<int ADDRESS, int WORD_LENGTH>
+Memory<ADDRESS, WORD_LENGTH>::Memory(sc_module_name)
+{
+	addrSpace = int(pow(2.0, ADDRESS));
+	mem = new sc_uint<WORD_LENGTH>[addrSpace];
+
+	SC_THREAD(meminit);
+	SC_METHOD(memread);
+	sensitive << addr << cs << rwbar;
+	SC_METHOD(memwrite);
+	sensitive << addr << datain << cs << rwbar;
+	SC_THREAD(memdump);
+}
+
+template<int ADDRESS, int WORD_LENGTH>
+void Memory<ADDRESS, WORD_LENGTH>::meminit() {
+
+	ifstream in("memin.txt");
+	int i;
+	sc_lv<WORD_LENGTH> data;
+
+	for (i = 0; i<addrSpace; i++) {
+		in >> data;
+		mem[i] = data;
+		cout << "Init at: " << i << " writes: " << data << '\n';
+	}
+}
+
+template<int ADDRESS, int WORD_LENGTH>
+void Memory<ADDRESS, WORD_LENGTH>::memwrite() {
+	sc_uint<ADDRESS> ad;
+	if (cs->read() == '1') {
+		if (rwbar->read() == '0') {
+			ad = addr;
+			mem[ad] = datain;
+		}
+	}
+}
+
+template<int ADDRESS, int WORD_LENGTH>
+void Memory<ADDRESS, WORD_LENGTH>::memread() {
+	sc_uint<ADDRESS> ad;
+	if (cs->read() == '1') {
+		if (rwbar->read() == '1') {
+			ad = addr;
+			dataout = mem[ad];
+		}
+	}
+}
+
+template<int ADDRESS, int WORD_LENGTH>
+void Memory<ADDRESS, WORD_LENGTH>::memdump() {
+	int i;
+	sc_lv<WORD_LENGTH> data;
+	ofstream out("memout.txt");
+	wait(2000, SC_NS);
+	for (i = 0; i<addrSpace; i++) {
+		data = mem[i];
+		out << i << ":\t" << data << "\n";
+	}
+}

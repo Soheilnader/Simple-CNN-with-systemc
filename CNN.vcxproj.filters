@@ -27,7 +27,7 @@
     <ClInclude Include="CONV_DATAPATH.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TB.h">
+    <ClInclude Include="elements_TB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,10 +41,10 @@
     <ClCompile Include="testing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TB.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="elements_TB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

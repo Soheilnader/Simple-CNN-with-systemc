@@ -1,5 +1,5 @@
 #include <systemc.h>
-#include "TB.h"
+#include "ELEMENTS_TB.h"
 
 void elements_TB::testing(){
 
@@ -58,7 +58,7 @@ void elements_TB::nBitMultiplier_testing(){
 
 		//nBitRegister_testing
 void elements_TB::nBitRegister_testing(){
-	din.write("00000011");
+	din.write("10000011");
 	load.write(SC_LOGIC_0);
 	clr.write(SC_LOGIC_0);
 
