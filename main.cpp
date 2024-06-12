@@ -1,11 +1,11 @@
 //#include "ELEMENTS_TB.h"
 #include "MEMORY_TB.h"
+#include "CONV_DATAPATH.h"
 
 int sc_main(int argc, char *argv[])
 {
 	/*
 	elements_TB* TOP = new elements_TB("TB");
-
 	sc_trace_file* VCDFile;
 	VCDFile = sc_create_vcd_trace_file("Waveform");
 
@@ -30,7 +30,6 @@ int sc_main(int argc, char *argv[])
 	*/
 
 	memory_TB* TOP = new memory_TB("TB");
-
 	sc_trace_file* VCDFile;
 	VCDFile = sc_create_vcd_trace_file("Waveform");
 

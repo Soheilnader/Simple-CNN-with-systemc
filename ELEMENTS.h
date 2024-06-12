@@ -1,3 +1,5 @@
+#ifndef ELEMENTS_H
+#define ELEMENTS_H
 #include <systemc.h>
 
 SC_MODULE(nBitAdder)
@@ -30,9 +32,8 @@ public:
 
 SC_MODULE(nBitComparator)
 {
-public:
-	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in1, in2;
-	sc_port<sc_signal_out_if<sc_lv<8>>, 1> result;
+	sc_in<sc_lv<8>> in1, in2;
+	sc_out<sc_logic> result;
 
 	SC_CTOR(nBitComparator)
 	{
@@ -146,10 +147,9 @@ public:
 
 SC_MODULE(nBitRegister)
 {
-public:
-	sc_port<sc_signal_in_if<sc_logic>, 1> clk, rst, load, clr;
-	sc_port<sc_signal_in_if<sc_lv<8>>, 1> d;
-	sc_port<sc_signal_out_if<sc_lv<8>>, 1> q;
+	sc_in<sc_logic> clk, rst, load, clr;
+	sc_in<sc_lv<8>> d;
+	sc_out<sc_lv<8>> q;
 
 	SC_CTOR(nBitRegister)
 	{
@@ -163,7 +163,7 @@ SC_MODULE(nBitCounter)
 {
 public:
 	sc_port<sc_signal_in_if<sc_logic>, 1> clk, rst, en, clr;
-	sc_port<sc_signal_out_if<sc_lv<4>>, 1> q;
+	sc_port<sc_signal_out_if<sc_lv<8>>, 1> q;
 
 	SC_CTOR(nBitCounter)
 	{
@@ -283,3 +283,5 @@ void Memory<ADDRESS, WORD_LENGTH>::memdump() {
 		out << i << ":\t" << data << "\n";
 	}
 }
+
+#endif

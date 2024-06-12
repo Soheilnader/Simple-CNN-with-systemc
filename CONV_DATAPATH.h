@@ -1,6 +1,8 @@
 #include <systemc.h>
 #include "ELEMENTS.h"
 
+
+
 SC_MODULE(conv_datapath){
 	sc_in <sc_logic> clk, rst;
 	sc_out <sc_logic> cmp_4, cmp_9;
@@ -52,10 +54,36 @@ SC_MODULE(conv_datapath){
 	nBitRegister* V_3;
 
 	SC_CTOR(conv_datapath){
-		sc_lv<8> s_cnt_9_SLICE;
-		sc_signal<sc_lv<8>> var_z;
-		var_z = "00000000";
-		s_cnt_9_SLICE = s_cnt_9;
+		sc_lv<8> s_cnt_9_var = s_cnt_9.read();
+		sc_signal<sc_lv<4>> s_cnt_9_LOWER;
+		s_cnt_9_LOWER.write(s_cnt_9_var.range(3,0));
+
+		sc_lv<8> s_cnt_4_var = s_cnt_4.read();
+		sc_signal<sc_lv<2>> s_cnt_4_LOWER;
+		s_cnt_4_LOWER.write(s_cnt_4_var.range(1, 0));
+
+		sc_lv<8> s_dec_var = s_dec.read();
+		sc_signal<sc_logic> s_dec_0, s_dec_1, s_dec_2, s_dec_3;
+		s_dec_0.write(s_dec_var[0]);
+		s_dec_1.write(s_dec_var[1]);
+		s_dec_2.write(s_dec_var[2]);
+		s_dec_3.write(s_dec_var[3]);
+
+		sc_signal<sc_lv<8>> VALUE_3, VALUE_2, VALUE_4, VALUE_9, VALUE_0;
+		VALUE_3.write("00000011");
+		VALUE_2.write("00000010");
+		VALUE_4.write("00000100");
+		VALUE_9.write("00001001");
+		VALUE_0.write("00000000");
+		sc_signal<sc_lv<8>> BIAS;
+		BIAS.write("00000000");
+
+		sc_signal<sc_logic> BIT_0, BIT_1;
+		BIT_0.write(SC_LOGIC_0);
+		BIT_1.write(SC_LOGIC_1);
+
+		sc_signal<sc_lv<8>> k0, k1, k2, k3, k4, k5, k6, k7, k8;
+
 
 		cnt_j = new nBitCounter("cnt_j");
 			cnt_j->clk(clk);
@@ -65,7 +93,7 @@ SC_MODULE(conv_datapath){
 			cnt_j->q(s_cnt_j);
 		cmp_j = new nBitComparator("cmp_j");
 			cmp_j->in1(s_cnt_j);
-			cmp_j->in2("00000011");
+			cmp_j->in2(VALUE_3);
 			cmp_j->result(s_cmp_j);
 
 		cnt_i = new nBitCounter("cnt_i");
@@ -76,7 +104,7 @@ SC_MODULE(conv_datapath){
 			cnt_i->q(s_cnt_i);
 		cmp_i = new nBitComparator("cmp_i");
 			cmp_j->in1(s_cnt_i);
-			cmp_j->in2("00000011");
+			cmp_j->in2(VALUE_3);
 			cmp_j->result(s_cmp_i);
 
 		cnt_y = new nBitCounter("cnt_y");
@@ -87,7 +115,7 @@ SC_MODULE(conv_datapath){
 			cnt_y->q(s_cnt_y);
 		cmp_y = new nBitComparator("cmp_y");
 			cmp_y->in1(s_cnt_y);
-			cmp_y->in2("00000010");
+			cmp_y->in2(VALUE_2);
 			cmp_y->result(s_cmp_y);
 
 		cnt_x = new nBitCounter("cnt_x");
@@ -98,7 +126,7 @@ SC_MODULE(conv_datapath){
 			cnt_x->q(s_cnt_x);
 		cmp_x = new nBitComparator("cmp_x");
 			cmp_x->in1(s_cnt_x);
-			cmp_x->in2("00000010");
+			cmp_x->in2(VALUE_2);
 			cmp_x->result(s_cmp_x);
 
 		mux1 = new mux4To1("mux1");
@@ -113,11 +141,11 @@ SC_MODULE(conv_datapath){
 			mux2->in0(s_cnt_i);
 			mux2->in1(s_cnt_x);
 			mux2->in2(data_rd);
-			mux2->in3(var_z);
+			mux2->in3(VALUE_0);
 			mux2->result(s_mul1);
 		mux3 = new mux2To1("mux3");
 			mux3->sel(sel3);
-			mux3->in0("00000100");
+			mux3->in0(VALUE_4);
 			mux3->in1(s_mux9to1);
 			mux3->result(s_mul2);
 		mux4 = new mux2To1("mux4");
@@ -151,7 +179,7 @@ SC_MODULE(conv_datapath){
 			data->q(s_data);
 
 		mux5 = new mux9To1("mux5");
-			mux5->sel(s_cnt_9);	//3 downto 0
+			mux5->sel(s_cnt_9_LOWER);	//3 downto 0
 			mux5->in0(k0);
 			mux5->in1(k1);
 			mux5->in2(k2);
@@ -170,11 +198,11 @@ SC_MODULE(conv_datapath){
 			cnt_9->q(s_cnt_9);
 		cmp9 = new nBitComparator("cmp9");
 			cmp9->in1(s_cnt_9);
-			cmp9->in2("00001001");
+			cmp9->in2(VALUE_9);
 			cmp9->result(s_cmp_9);
 
 		dec = new dec2To4("dec");
-			dec->sel(s_cnt_4);	// 1 downto 0
+			dec->sel(s_cnt_4_LOWER);	// 1 downto 0
 			dec->en(en_dec);
 			dec->result(s_dec);
 		cnt_4 = new nBitCounter("cnt_4");
@@ -185,35 +213,35 @@ SC_MODULE(conv_datapath){
 			cnt_4->q(s_cnt_4);
 		cmp4 = new nBitComparator("cmp4");
 			cmp4->in1(s_cnt_4);
-			cmp4->in2("00000100");
+			cmp4->in2(VALUE_4);
 			cmp4->result(s_cmp_4);
 
 		V_0 = new nBitRegister("V_0");
 			V_0->clk(clk);
 			V_0->rst(rst);
-			V_0->load(s_dec[0]);
-			V_0->clr('0');
+			V_0->load(s_dec_0);
+			V_0->clr(BIT_0);
 			V_0->d(s_data);
 			V_0->q(val0);
 		V_1 = new nBitRegister("V_1");
 			V_1->clk(clk);
 			V_1->rst(rst);
-			V_1->load(s_dec[1]);
-			V_1->clr('0');
+			V_1->load(s_dec_1);
+			V_1->clr(BIT_0);
 			V_1->d(s_data);
 			V_1->q(val1);
 		V_2 = new nBitRegister("V_2");
 			V_2->clk(clk);
 			V_2->rst(rst);
-			V_2->load(s_dec[2]);
-			V_2->clr('0');
+			V_2->load(s_dec_2);
+			V_2->clr(BIT_0);
 			V_2->d(s_data);
 			V_2->q(val2);
 		V_3 = new nBitRegister("V_3");
 			V_3->clk(clk);
 			V_3->rst(rst);
-			V_3->load(s_dec[3]);
-			V_3->clr('0');
+			V_3->load(s_dec_3);
+			V_3->clr(BIT_0);
 			V_3->d(s_data);
 			V_3->q(val3);
 	}

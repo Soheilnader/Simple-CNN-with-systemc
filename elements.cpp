@@ -12,10 +12,10 @@ void nBitMultiplier::multiplying()
 
 void nBitComparator::comparing()
 {
-	if (in1->read().to_uint() == in2->read().to_uint())
-		result->write('1');
+	if (in1->read().to_int() == in2->read().to_int())
+		result->write(SC_LOGIC_1);
 	else
-		result->write('0');
+		result->write(SC_LOGIC_0);
 }
 
 void mux2To1::muxing2()
