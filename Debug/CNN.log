@@ -1,17 +1,33 @@
-﻿Build started 6/12/2024 3:27:50 PM.
+﻿Build started 6/12/2024 4:48:23 PM.
      1>Project "D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\CNN\CNN.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\systemc-2.3.1\src" /I"C:\systemc-2.3.1\src" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_DEPRECATE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /vmg elements_TB.cpp
-         elements_TB.cpp
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\systemc-2.3.1\src" /I"C:\systemc-2.3.1\src" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_DEPRECATE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /vmg memory_TB.cpp
+         memory_TB.cpp
+     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(248): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(243) : while compiling class template member function 'void Memory<4,8>::memread1(void)'
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(206) : see reference to function template instantiation 'void Memory<4,8>::memread1(void)' being compiled
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(201) : while compiling class template member function 'Memory<4,8>::Memory(sc_core::sc_module_name)'
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\memory_tb.h(18) : see reference to function template instantiation 'Memory<4,8>::Memory(sc_core::sc_module_name)' being compiled
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\memory_tb.h(18) : see reference to class template instantiation 'Memory<4,8>' being compiled
+     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(259): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(254) : while compiling class template member function 'void Memory<4,8>::memread2(void)'
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(208) : see reference to function template instantiation 'void Memory<4,8>::memread2(void)' being compiled
+     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(270): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(265) : while compiling class template member function 'void Memory<4,8>::memread3(void)'
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(210) : see reference to function template instantiation 'void Memory<4,8>::memread3(void)' being compiled
+     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(237): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(232) : while compiling class template member function 'void Memory<4,8>::memwrite(void)'
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(212) : see reference to function template instantiation 'void Memory<4,8>::memwrite(void)' being compiled
        Link:
          E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\Debug\CNN.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\systemc-2.3.1\msvc10\SystemC\Debug" /LIBPATH:"C:\systemc-2.3.1\msvc80\SystemC\Debug" systemc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\Debug\CNN.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\Debug\CNN.lib" /MACHINE:X86 Debug\conv_controller.obj
          Debug\elements.obj
          Debug\main.obj
          Debug\elements_TB.obj
+         Debug\memory_TB.obj
          Debug\testing.obj
          CNN.vcxproj -> D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\Debug\CNN.exe
      1>Done Building Project "D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\CNN\CNN.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.05
+Time Elapsed 00:00:02.26

@@ -177,16 +177,18 @@ public:
 template<int ADDRESS, int WORD_LENGTH>
 class Memory : public sc_module {
 public:
-	sc_in<sc_lv<ADDRESS>> addr;
-	sc_in<sc_lv<WORD_LENGTH>> datain;
-	sc_out<sc_lv<WORD_LENGTH>> dataout;
-	sc_in<sc_logic> cs, rwbar;
+	sc_in<sc_lv<ADDRESS>> addr_rd1, addr_rd2, addr_rd3, addr_wr;
+	sc_in<sc_lv<WORD_LENGTH>> data_wr;
+	sc_out<sc_lv<WORD_LENGTH>> data_rd1, data_rd2, data_rd3;
+	sc_in<sc_logic> clk, write_en, read1, read2, read3;
 
 	int addrSpace;
 	sc_uint <WORD_LENGTH> *mem;
 
 	void meminit();
-	void memread();
+	void memread1();
+	void memread2();
+	void memread3();
 	void memwrite();
 	void memdump();
 
@@ -201,10 +203,14 @@ Memory<ADDRESS, WORD_LENGTH>::Memory(sc_module_name)
 	mem = new sc_uint<WORD_LENGTH>[addrSpace];
 
 	SC_THREAD(meminit);
-	SC_METHOD(memread);
-	sensitive << addr << cs << rwbar;
+	SC_METHOD(memread1);
+	sensitive << clk;
+	SC_METHOD(memread2);
+	sensitive << clk;
+	SC_METHOD(memread3);
+	sensitive << clk;
 	SC_METHOD(memwrite);
-	sensitive << addr << datain << cs << rwbar;
+	sensitive << clk;
 	SC_THREAD(memdump);
 }
 
@@ -224,22 +230,44 @@ void Memory<ADDRESS, WORD_LENGTH>::meminit() {
 
 template<int ADDRESS, int WORD_LENGTH>
 void Memory<ADDRESS, WORD_LENGTH>::memwrite() {
-	sc_uint<ADDRESS> ad;
-	if (cs->read() == '1') {
-		if (rwbar->read() == '0') {
-			ad = addr;
-			mem[ad] = datain;
+	sc_uint<ADDRESS> ad_w;
+	if (clk->event() && clk->read() == '1') {
+		if (write_en->read() == '1') {
+			ad_w = addr_wr;
+			mem[ad_w] = data_wr;
 		}
 	}
 }
 
 template<int ADDRESS, int WORD_LENGTH>
-void Memory<ADDRESS, WORD_LENGTH>::memread() {
-	sc_uint<ADDRESS> ad;
-	if (cs->read() == '1') {
-		if (rwbar->read() == '1') {
-			ad = addr;
-			dataout = mem[ad];
+void Memory<ADDRESS, WORD_LENGTH>::memread1() {
+	sc_uint<ADDRESS> ad1;
+	if (clk->event() && clk->read() == '1') {
+		if (read1->read() == '1') {
+			ad1 = addr_rd1;
+			data_rd1 = mem[ad1];
+		}
+	}
+}
+
+template<int ADDRESS, int WORD_LENGTH>
+void Memory<ADDRESS, WORD_LENGTH>::memread2() {
+	sc_uint<ADDRESS> ad2;
+	if (clk->event() && clk->read() == '1') {
+		if (read2->read() == '1') {
+			ad2 = addr_rd2;
+			data_rd2 = mem[ad2];
+		}
+	}
+}
+
+template<int ADDRESS, int WORD_LENGTH>
+void Memory<ADDRESS, WORD_LENGTH>::memread3() {
+	sc_uint<ADDRESS> ad3;
+	if (clk->event() && clk->read() == '1') {
+		if (read3->read() == '1') {
+			ad3 = addr_rd3;
+			data_rd3 = mem[ad3];
 		}
 	}
 }

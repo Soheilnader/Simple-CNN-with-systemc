@@ -1,5 +1,5 @@
 $date
-     Jun 12, 2024       15:27:56
+     Jun 12, 2024       16:48:29
 $end
 
 $version
@@ -13,10 +13,16 @@ $end
 $scope module SystemC $end
 $var wire    1  aaaaa  clk       $end
 $var wire    1  aaaab  rst       $end
-$var wire    8  aaaac  din [7:0]  $end
-$var wire    8  aaaad  dout [7:0]  $end
-$var wire    1  aaaae  clr       $end
-$var wire    1  aaaaf  load       $end
+$var wire    1  aaaac  read1       $end
+$var wire    1  aaaad  read2       $end
+$var wire    1  aaaae  read3       $end
+$var wire    4  aaaaf  addr_rd1 [3:0]  $end
+$var wire    4  aaaag  addr_rd2 [3:0]  $end
+$var wire    4  aaaah  addr_rd3 [3:0]  $end
+$var wire    4  aaaai  addr_wr [3:0]  $end
+$var wire    8  aaaaj  data_rd1 [7:0]  $end
+$var wire    8  aaaak  data_rd2 [7:0]  $end
+$var wire    8  aaaal  data_rd3 [7:0]  $end
 $upscope $end
 $enddefinitions  $end
 
@@ -27,10 +33,16 @@ $end
 $dumpvars
 0aaaaa
 1aaaab
-b10000011 aaaac
-b0 aaaad
+0aaaac
+0aaaad
 0aaaae
-0aaaaf
+b0 aaaaf
+b0 aaaag
+b0 aaaah
+b0 aaaai
+bXXXXXXXX aaaaj
+bXXXXXXXX aaaak
+bXXXXXXXX aaaal
 $end
 
 #2000
@@ -41,22 +53,23 @@ $end
 
 #10000
 0aaaaa
-1aaaaf
+1aaaac
+1aaaad
+1aaaae
+b11 aaaaf
+b100 aaaah
 
 #15000
 1aaaaa
-b10000011 aaaad
+b100 aaaaj
+b1 aaaak
+b101 aaaal
 
 #20000
 0aaaaa
 
-#23000
-1aaaae
-0aaaaf
-
 #25000
 1aaaaa
-b0 aaaad
 
 #30000
 0aaaaa
@@ -64,16 +77,11 @@ b0 aaaad
 #35000
 1aaaaa
 
-#36000
-0aaaae
-1aaaaf
-
 #40000
 0aaaaa
 
 #45000
 1aaaaa
-b10000011 aaaad
 
 #50000
 0aaaaa
