@@ -81,6 +81,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CNN_TOP.h" />
+    <ClInclude Include="CNN.h" />
+    <ClInclude Include="CONV_BLOCK.h" />
     <ClInclude Include="CONV_CONTROLLER.h" />
     <ClInclude Include="CONV_DATAPATH.h" />
     <ClInclude Include="ELEMENTS.h" />

@@ -2,7 +2,7 @@
 
 SC_MODULE(conv_controller){
 	sc_in <sc_logic> clk, rst, cmp_4, cmp_9, start_conv;
-	sc_out <sc_logic> read, done, load_data, load_addr, clr_data, clr_addr, en_dec, sel3, sel4, en_j, en_9, en_4;
+	sc_out <sc_logic> read, done_conv, load_data, load_addr, clr_data, clr_addr, en_dec, sel3, sel4, en_j, en_9, en_4;
 	sc_out <sc_lv<2>> sel1, sel2;
 
 	enum states

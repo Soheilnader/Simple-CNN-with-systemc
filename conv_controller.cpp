@@ -2,7 +2,7 @@
 
 void conv_controller::comb_O_function(){
 	read = SC_LOGIC_0;
-	done = SC_LOGIC_0;
+	done_conv = SC_LOGIC_0;
 	en_j = SC_LOGIC_0;
 	en_9 = SC_LOGIC_0;
 	en_4 = SC_LOGIC_0;
@@ -18,7 +18,7 @@ void conv_controller::comb_O_function(){
 
 	switch (p_state){
 	case IDLE:
-		done = SC_LOGIC_1;
+		done_conv = SC_LOGIC_1;
 		break;
 	case START:
 		break;
@@ -67,7 +67,7 @@ void conv_controller::comb_O_function(){
 		break;
 	default:
 		read = SC_LOGIC_0;
-		done = SC_LOGIC_0;
+		done_conv = SC_LOGIC_0;
 		en_j = SC_LOGIC_0;
 		en_9 = SC_LOGIC_0;
 		en_4 = SC_LOGIC_0;

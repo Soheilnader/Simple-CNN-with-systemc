@@ -82,13 +82,13 @@ void maxpool::maxpooling() {
 void result::resulting(){
 	if ((in0->read().to_uint() >= in1->read().to_uint()) &&
 		(in0->read().to_uint() >= in2->read().to_uint())) 
-		pattern->write(in0->read());
+		pattern->write("001");
 	else if ((in1->read().to_uint() >= in0->read().to_uint()) &&
 		(in1->read().to_uint() >= in2->read().to_uint()))
-		pattern->write(in1->read());
+		pattern->write("010");
 	else if ((in2->read().to_uint() >= in0->read().to_uint()) &&
 		(in2->read().to_uint() >= in1->read().to_uint()))
-		pattern->write(in2->read());
+		pattern->write("100");
 }
 
 void nBitRegister::registering(){

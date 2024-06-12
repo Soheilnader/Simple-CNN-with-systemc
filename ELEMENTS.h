@@ -106,8 +106,8 @@ public:
 SC_MODULE(relu)
 {
 public:
-	sc_port<sc_signal_in_if<sc_lv<4>>, 1> in0, in1, in2, in3;
-	sc_port<sc_signal_out_if<sc_lv<4>>, 1> val0, val1, val2, val3;
+	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in0, in1, in2, in3;
+	sc_port<sc_signal_out_if<sc_lv<8>>, 1> val0, val1, val2, val3;
 
 	SC_CTOR(relu)
 	{
@@ -120,8 +120,8 @@ public:
 SC_MODULE(maxpool)
 {
 public:
-	sc_port<sc_signal_in_if<sc_lv<4>>, 1> in0, in1, in2, in3;
-	sc_port<sc_signal_out_if<sc_lv<4>>, 1> max;
+	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in0, in1, in2, in3;
+	sc_port<sc_signal_out_if<sc_lv<8>>, 1> max;
 
 	SC_CTOR(maxpool)
 	{
@@ -134,13 +134,13 @@ public:
 SC_MODULE(result)
 {
 public:
-	sc_port<sc_signal_in_if<sc_lv<4>>, 1> in0, in1, in2, in3;
-	sc_port<sc_signal_out_if<sc_lv<4>>, 1> pattern;
+	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in0, in1, in2;
+	sc_port<sc_signal_out_if<sc_lv<3>>, 1> pattern;
 
 	SC_CTOR(result)
 	{
 		SC_METHOD(resulting);
-		sensitive << in0 << in1 << in2 << in3;
+		sensitive << in0 << in1 << in2;
 	}
 	void resulting();
 };

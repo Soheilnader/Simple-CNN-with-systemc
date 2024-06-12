@@ -1,6 +1,6 @@
 //#include "ELEMENTS_TB.h"
 #include "MEMORY_TB.h"
-#include "CONV_DATAPATH.h"
+#include "CONV_BLOCK.h"
 
 int sc_main(int argc, char *argv[])
 {

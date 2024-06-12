@@ -33,6 +33,12 @@
     <ClInclude Include="ELEMENTS_TB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CNN.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CONV_BLOCK.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="conv_controller.cpp">

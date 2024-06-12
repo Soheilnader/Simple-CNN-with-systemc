@@ -2,7 +2,7 @@
 #include "ELEMENTS.h"
 
 
-
+//template<sc_lv<8> BIAS, sc_lv<8> k0, sc_lv<8> k1, sc_lv<8> k2, sc_lv<8> k3, sc_lv<8> k4, sc_lv<8> k5, sc_lv<8> k6, sc_lv<8> k7, sc_lv<8> k8>
 SC_MODULE(conv_datapath){
 	sc_in <sc_logic> clk, rst;
 	sc_out <sc_logic> cmp_4, cmp_9;
