@@ -4,9 +4,8 @@
 
 SC_MODULE(nBitAdder)
 {
-public:
-	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in1, in2;
-	sc_port<sc_signal_out_if<sc_lv<8>>, 1> result;
+	sc_in<sc_lv<8>> in1, in2;
+	sc_out<sc_lv<8>> result;
 
 	SC_CTOR(nBitAdder)
 	{
@@ -18,9 +17,8 @@ public:
 
 SC_MODULE(nBitMultiplier)
 {
-public:
-	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in1, in2;
-	sc_port<sc_signal_out_if<sc_lv<8>>, 1> result;
+	sc_in<sc_lv<8>> in1, in2;
+	sc_out<sc_lv<8>> result;
 
 	SC_CTOR(nBitMultiplier)
 	{
@@ -45,10 +43,9 @@ SC_MODULE(nBitComparator)
 
 SC_MODULE(mux2To1)
 {
-public:
-	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in0, in1;
-	sc_port<sc_signal_in_if<sc_logic>, 1> sel;
-	sc_port<sc_signal_out_if<sc_lv<8>>, 1> result;
+	sc_in<sc_lv<8>> in0, in1;
+	sc_in<sc_logic> sel;
+	sc_out<sc_lv<8>> result;
 
 	SC_CTOR(mux2To1)
 	{
@@ -60,10 +57,9 @@ public:
 
 SC_MODULE(mux4To1)
 {
-public:
-	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in0, in1, in2, in3;
-	sc_port<sc_signal_in_if<sc_lv<2>>, 1> sel;
-	sc_port<sc_signal_out_if<sc_lv<8>>, 1> result;
+	sc_in<sc_lv<8>> in0, in1, in2, in3;
+	sc_in<sc_lv<2>> sel;
+	sc_out<sc_lv<8>> result;
 
 	SC_CTOR(mux4To1)
 	{
@@ -75,10 +71,9 @@ public:
 
 SC_MODULE(mux9To1)
 {
-public:
-	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in0, in1, in2, in3, in4, in5, in6, in7, in8;
-	sc_port<sc_signal_in_if<sc_lv<4>>, 1> sel;
-	sc_port<sc_signal_out_if<sc_lv<8>>, 1> result;
+	sc_in<sc_lv<8>> in0, in1, in2, in3, in4, in5, in6, in7, in8;
+	sc_in<sc_lv<4>> sel;
+	sc_out<sc_lv<8>> result;
 
 	SC_CTOR(mux9To1)
 	{
@@ -90,10 +85,9 @@ public:
 
 SC_MODULE(dec2To4)
 {
-public:
-	sc_port<sc_signal_in_if<sc_lv<2>>, 1> sel;
-	sc_port<sc_signal_in_if<sc_logic>, 1> en;
-	sc_port<sc_signal_out_if<sc_lv<4>>, 1> result;
+	sc_in<sc_lv<2>> sel;
+	sc_in<sc_logic> en;
+	sc_out<sc_lv<4>> result;
 
 	SC_CTOR(dec2To4)
 	{
@@ -105,9 +99,8 @@ public:
 
 SC_MODULE(relu)
 {
-public:
-	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in0, in1, in2, in3;
-	sc_port<sc_signal_out_if<sc_lv<8>>, 1> val0, val1, val2, val3;
+	sc_in<sc_lv<8>> in0, in1, in2, in3;
+	sc_out<sc_lv<8>> val0, val1, val2, val3;
 
 	SC_CTOR(relu)
 	{
@@ -119,9 +112,8 @@ public:
 
 SC_MODULE(maxpool)
 {
-public:
-	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in0, in1, in2, in3;
-	sc_port<sc_signal_out_if<sc_lv<8>>, 1> max;
+	sc_in<sc_lv<8>> in0, in1, in2, in3;
+	sc_out<sc_lv<8>> max;
 
 	SC_CTOR(maxpool)
 	{
@@ -133,9 +125,8 @@ public:
 
 SC_MODULE(result)
 {
-public:
-	sc_port<sc_signal_in_if<sc_lv<8>>, 1> in0, in1, in2;
-	sc_port<sc_signal_out_if<sc_lv<3>>, 1> pattern;
+	sc_in<sc_lv<8>> in0, in1, in2;
+	sc_out<sc_lv<3>> pattern;
 
 	SC_CTOR(result)
 	{
@@ -162,8 +153,8 @@ SC_MODULE(nBitRegister)
 SC_MODULE(nBitCounter)
 {
 public:
-	sc_port<sc_signal_in_if<sc_logic>, 1> clk, rst, en, clr;
-	sc_port<sc_signal_out_if<sc_lv<8>>, 1> q;
+	sc_in<sc_logic> clk, rst, en, clr;
+	sc_out<sc_lv<8>> q;
 
 	SC_CTOR(nBitCounter)
 	{

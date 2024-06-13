@@ -4,6 +4,39 @@
 
 #define NUM_OF_CONVS 3
 
+#define BIAS0 -1
+#define K00 0
+#define K01 1
+#define K02 0
+#define K03 1
+#define K04 1
+#define K05 1
+#define K06 0
+#define K07 1
+#define K08 0
+
+#define BIAS1 -2
+#define K10 1
+#define K11 1
+#define K12 1
+#define K13 1
+#define K14 0
+#define K15 0
+#define K16 1
+#define K17 1
+#define K18 1
+
+#define BIAS2 -2
+#define K20 1
+#define K21 1
+#define K22 1
+#define K23 0
+#define K24 1
+#define K25 0
+#define K26 0
+#define K27 1
+#define K28 0
+
 SC_MODULE(cnn){
 	sc_in <sc_logic> clk, rst, start;
 	sc_out <sc_logic> done;
@@ -17,9 +50,9 @@ SC_MODULE(cnn){
 	sc_signal <sc_lv<4>> addr_rd[NUM_OF_CONVS];
 
 
-	conv_block* conv_blk1;
-	conv_block* conv_blk2;
-	conv_block* conv_blk3;
+	conv_block<BIAS0, K00, K01, K02, K03, K04, K05, K06, K07, K08>* conv_blk1;
+	conv_block<BIAS1, K10, K11, K12, K13, K14, K15, K16, K17, K18>* conv_blk2;
+	conv_block<BIAS2, K20, K21, K22, K23, K24, K25, K26, K27, K28>* conv_blk3;
 	relu* relu1;
 	relu* relu2;
 	relu* relu3;
@@ -36,7 +69,7 @@ SC_MODULE(cnn){
 
 
 
-		conv_blk1 = new conv_block("conv_blk1");
+		conv_blk1 = new conv_block<BIAS0, K00, K01, K02, K03, K04, K05, K06, K07, K08>("conv_blk1");
 		conv_blk1->clk(clk);
 		conv_blk1->rst(rst);
 		conv_blk1->read(read[0]);
@@ -49,7 +82,7 @@ SC_MODULE(cnn){
 		conv_blk1->val_2(val_2[0]);
 		conv_blk1->val_3(val_3[0]);
 
-		conv_blk2 = new conv_block("conv_blk2");
+		conv_blk2 = new conv_block<BIAS1, K10, K11, K12, K13, K14, K15, K16, K17, K18>("conv_blk2");
 		conv_blk2->clk(clk);
 		conv_blk2->rst(rst);
 		conv_blk2->read(read[1]);
@@ -62,7 +95,7 @@ SC_MODULE(cnn){
 		conv_blk2->val_2(val_2[1]);
 		conv_blk2->val_3(val_3[1]);
 
-		conv_blk3 = new conv_block("conv_blk3");
+		conv_blk3 = new conv_block<BIAS2, K20, K21, K22, K23, K24, K25, K26, K27, K28>("conv_blk3");
 		conv_blk3->clk(clk);
 		conv_blk3->rst(rst);
 		conv_blk3->read(read[2]);

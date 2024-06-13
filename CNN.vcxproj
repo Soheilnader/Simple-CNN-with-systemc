@@ -80,22 +80,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CNN_TOP.h" />
+    <ClInclude Include="CNN_TB.h" />
     <ClInclude Include="CNN.h" />
     <ClInclude Include="CONV_BLOCK.h" />
     <ClInclude Include="CONV_CONTROLLER.h" />
     <ClInclude Include="CONV_DATAPATH.h" />
     <ClInclude Include="ELEMENTS.h" />
-    <ClInclude Include="ELEMENTS_TB.h" />
-    <ClInclude Include="MEMORY_TB.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cnn_TB.cpp" />
     <ClCompile Include="conv_controller.cpp" />
     <ClCompile Include="elements.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="elements_TB.cpp" />
-    <ClCompile Include="memory_TB.cpp" />
-    <ClCompile Include="testing.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

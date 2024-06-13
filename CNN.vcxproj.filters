@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CNN_TOP.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ELEMENTS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -27,16 +24,13 @@
     <ClInclude Include="CONV_DATAPATH.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MEMORY_TB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ELEMENTS_TB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CNN.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CONV_BLOCK.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CNN_TB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,16 +41,10 @@
     <ClCompile Include="elements.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="testing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="elements_TB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="memory_TB.cpp">
+    <ClCompile Include="cnn_TB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,6 @@
 //#include "ELEMENTS_TB.h"
 #include "MEMORY_TB.h"
-#include "CONV_BLOCK.h"
+#include "CNN_TB.h"
 
 int sc_main(int argc, char *argv[])
 {
@@ -28,7 +28,7 @@ int sc_main(int argc, char *argv[])
 	sc_trace(VCDFile, TOP->load, "load");
 
 	*/
-
+	/*
 	memory_TB* TOP = new memory_TB("TB");
 	sc_trace_file* VCDFile;
 	VCDFile = sc_create_vcd_trace_file("Waveform");
@@ -45,10 +45,19 @@ int sc_main(int argc, char *argv[])
 	sc_trace(VCDFile, TOP->data_rd1, "data_rd1");
 	sc_trace(VCDFile, TOP->data_rd2, "data_rd2");
 	sc_trace(VCDFile, TOP->data_rd3, "data_rd3");
+	*/
 
+	cnn_TB* TOP = new cnn_TB("TB");
+	sc_trace_file* VCDFile;
+	VCDFile = sc_create_vcd_trace_file("Waveform");
 
-	std::cout << "Done!\n";
+	sc_trace(VCDFile, TOP->clk, "clk");
+	sc_trace(VCDFile, TOP->rst, "rst");
+	sc_trace(VCDFile, TOP->start, "start");
+	sc_trace(VCDFile, TOP->pattern, "pattern");
+
+	std::cout << "Sim Start!\n";
 	sc_start(2000, SC_NS);
-	std::cout << "Done!\n";
+	std::cout << "Sim Done!\n";
 	return 0;
 }
