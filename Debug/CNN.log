@@ -1,8 +1,14 @@
-﻿Build started 6/13/2024 3:47:34 PM.
+﻿Build started 6/13/2024 10:16:24 PM.
      1>Project "D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\CNN\CNN.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\systemc-2.3.1\src" /I"C:\systemc-2.3.1\src" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_DEPRECATE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /vmg cnn_TB.cpp main.cpp
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\systemc-2.3.1\src" /I"C:\systemc-2.3.1\src" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_DEPRECATE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /vmg main.cpp
          main.cpp
+     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\cnn_tb.h(4): warning C4005: 'CLK_ON' : macro redefinition
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\memory_tb.h(4) : see previous definition of 'CLK_ON'
+     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\cnn_tb.h(5): warning C4005: 'CLK_OFF' : macro redefinition
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\memory_tb.h(5) : see previous definition of 'CLK_OFF'
+     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\cnn_tb.h(6): warning C4005: 'RST_TIME' : macro redefinition
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\memory_tb.h(6) : see previous definition of 'RST_TIME'
      1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(239): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
                  d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(234) : while compiling class template member function 'void Memory<4,8>::memread1(void)'
                  d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(197) : see reference to function template instantiation 'void Memory<4,8>::memread1(void)' being compiled
@@ -15,26 +21,6 @@
      1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(261): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
                  d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(256) : while compiling class template member function 'void Memory<4,8>::memread3(void)'
                  d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(201) : see reference to function template instantiation 'void Memory<4,8>::memread3(void)' being compiled
-     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(228): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(223) : while compiling class template member function 'void Memory<4,8>::memwrite(void)'
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(203) : see reference to function template instantiation 'void Memory<4,8>::memwrite(void)' being compiled
-         cnn_TB.cpp
-     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(239): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(234) : while compiling class template member function 'void Memory<4,8>::memread1(void)'
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(197) : see reference to function template instantiation 'void Memory<4,8>::memread1(void)' being compiled
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(192) : while compiling class template member function 'Memory<4,8>::Memory(sc_core::sc_module_name)'
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\cnn.h(168) : see reference to function template instantiation 'Memory<4,8>::Memory(sc_core::sc_module_name)' being compiled
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\cnn.h(168) : see reference to class template instantiation 'Memory<4,8>' being compiled
-     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(250): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(245) : while compiling class template member function 'void Memory<4,8>::memread2(void)'
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(199) : see reference to function template instantiation 'void Memory<4,8>::memread2(void)' being compiled
-     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(261): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(256) : while compiling class template member function 'void Memory<4,8>::memread3(void)'
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(201) : see reference to function template instantiation 'void Memory<4,8>::memread3(void)' being compiled
-     1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(228): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(223) : while compiling class template member function 'void Memory<4,8>::memwrite(void)'
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(203) : see reference to function template instantiation 'void Memory<4,8>::memwrite(void)' being compiled
-         Generating Code...
        Link:
          E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\Debug\CNN.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\systemc-2.3.1\msvc10\SystemC\Debug" /LIBPATH:"C:\systemc-2.3.1\msvc80\SystemC\Debug" systemc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\Debug\CNN.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\Debug\CNN.lib" /MACHINE:X86 Debug\cnn_TB.obj
          Debug\conv_controller.obj
@@ -45,4 +31,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:08.09
+Time Elapsed 00:00:07.51

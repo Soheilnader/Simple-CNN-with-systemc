@@ -1,22 +1,25 @@
 #include <systemc.h>
 #include "CNN_TB.h"
 
-void cnn_TB::testing_CNN(){
+void cnn_TB::cnn_testing(){
+	//std::cout << "cnn_TB.cpp cnn_TB::testing_CNN()\n";
 
 	while (true)
 	{
 
 		start.write(SC_LOGIC_0);
-		wait(50, SC_NS);
+		wait(25, SC_NS);
 		start.write(SC_LOGIC_1);
-		wait(20, SC_NS);
+		wait(100, SC_NS);
 		start.write(SC_LOGIC_0);
 
 		wait();
 	}
 }
 
-void cnn_TB::clocking(){
+void cnn_TB::cnn_clocking(){
+	//std::cout << "cnn_TB.cpp cnn_TB::cnn_clocking()\n";
+
 	while (true)
 	{
 		clk.write(SC_LOGIC_0);
@@ -26,15 +29,16 @@ void cnn_TB::clocking(){
 	}
 }
 
-void cnn_TB::resetting(){
-
+void cnn_TB::cnn_resetting(){
+		//std::cout << "cnn_TB.cpp cnn_TB::cnn_resetting()\n";
 		rst.write(SC_LOGIC_1);
 		wait(RST_TIME, SC_NS);
 		rst.write(SC_LOGIC_0);
 
 }
 
-void cnn_TB::display(){
-		std::cout << "pattern= " << pattern.read();
+void cnn_TB::cnn_display(){
+		//std::cout << "cnn_TB.cpp cnn_TB::cnn_display()\n";
+		//std::cout << "pattern= " << pattern.read();
 	
 }

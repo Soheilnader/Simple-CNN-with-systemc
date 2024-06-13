@@ -24,7 +24,7 @@ SC_MODULE(memory_TB)
 		MEM->addr_rd1(addr_rd1);
 		MEM->addr_rd2(addr_rd2);
 		MEM->addr_rd3(addr_rd3);
-		MEM->addr_wr(addr_wr);
+		//MEM->addr_wr(addr_wr);
 		MEM->data_rd1(data_rd1);
 		MEM->data_rd2(data_rd2);
 		MEM->data_rd3(data_rd3);

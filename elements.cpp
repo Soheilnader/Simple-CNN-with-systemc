@@ -2,16 +2,19 @@
 
 void nBitAdder::adding()
 {
+	//std::cout << "adding\n";
 	result->write(in1->read().to_int() + in2->read().to_int());
 }
 
 void nBitMultiplier::multiplying()
 {
+	//std::cout << "multiplying\n";
 	result->write(in1->read().to_int() * in2->read().to_int());
 }
 
 void nBitComparator::comparing()
 {
+	//std::cout << "comparing\n";
 	if (in1->read().to_int() == in2->read().to_int())
 		result->write(SC_LOGIC_1);
 	else
@@ -20,11 +23,13 @@ void nBitComparator::comparing()
 
 void mux2To1::muxing2()
 {
+	//std::cout << "muxing2\n";
 	if (sel->read() == '1')	result->write(in1->read());
 	else result->write(in0->read());
 }
 
 void mux4To1::muxing4() {
+	//std::cout << "muxing4\n";
 	if (sel->read() == "01") result->write(in1->read());
 	else if (sel->read() == "10") result->write(in2->read());
 	else if (sel->read() == "11") result->write(in3->read());
@@ -32,6 +37,7 @@ void mux4To1::muxing4() {
 }
 
 void mux9To1::muxing9() {
+	//std::cout << "muxing9\n";
 	if (sel->read() == "0001") result->write(in1->read());
 	else if (sel->read() == "0010") result->write(in2->read());
 	else if (sel->read() == "0011") result->write(in3->read());
@@ -44,6 +50,8 @@ void mux9To1::muxing9() {
 }
 
 void dec2To4::decoding() {
+	//std::cout << "decoding\n";
+
 	if (en->read() == '0')  result->write("0000");
 	else{
 		if (sel->read() == "00") result->write("0001");
@@ -54,13 +62,16 @@ void dec2To4::decoding() {
 }
 
 void relu::reluing() {
-	val0->write(in0[7]->read() == '1' ? "00000000" : in0->read());
-	val1->write(in1[7]->read() == '1' ? "00000000" : in1->read());
-	val2->write(in2[7]->read() == '1' ? "00000000" : in2->read());
-	val3->write(in3[7]->read() == '1' ? "00000000" : in3->read());
+	//std::cout << "reluing\n";
+	val0->write((in0->read().to_int() < 0) == '1' ? "00000000" : in0->read());
+	val1->write((in1->read().to_int() < 0) == '1' ? "00000000" : in1->read());
+	val2->write((in2->read().to_int() < 0) == '1' ? "00000000" : in2->read());
+	val3->write((in3->read().to_int() < 0) == '1' ? "00000000" : in3->read());
 }
 
 void maxpool::maxpooling() {
+	//std::cout << "maxpooling\n";
+
 	if ((in0->read().to_uint() >= in1->read().to_uint()) &&
 		(in0->read().to_uint() >= in2->read().to_uint()) &&
 		(in0->read().to_uint() >= in3->read().to_uint()))
@@ -80,6 +91,8 @@ void maxpool::maxpooling() {
 }
 
 void result::resulting(){
+	//std::cout << "resulting\n";
+
 	if ((in0->read().to_uint() >= in1->read().to_uint()) &&
 		(in0->read().to_uint() >= in2->read().to_uint())) 
 		pattern->write("001");
@@ -92,6 +105,8 @@ void result::resulting(){
 }
 
 void nBitRegister::registering(){
+	//std::cout << "registering\n";
+
 	if (rst->read() == '1')
 	{
 		q->write("00000000");
@@ -107,6 +122,8 @@ void nBitRegister::registering(){
 }
 
 void nBitCounter::counting(){
+	//std::cout << "counting\n";
+
 	if (rst->read() == '1')
 	{
 		q->write("00000000");

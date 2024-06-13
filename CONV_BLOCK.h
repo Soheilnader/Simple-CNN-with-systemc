@@ -25,6 +25,7 @@ SC_MODULE(conv_block){
 
 
 	SC_CTOR(conv_block){
+		//std::cout << "CONV_BLOCK.h SC_CTOR(conv_block){\n";
 
 
 		conv_dp = new conv_datapath<BIAS, K0, K1, K2, K3, K4, K5, K6, K7, K8>("conv_dp");
@@ -50,6 +51,7 @@ SC_MODULE(conv_block){
 		conv_dp->sel4(sel4);
 		conv_dp->cmp_4(cmp_4);
 		conv_dp->cmp_9(cmp_9);
+		//std::cout << "CONV_BLOCK.h conv_dp = new conv_datapath\n";
 
 		conv_cntrl = new conv_controller("conv_cntrl");
 		conv_cntrl->clk(clk);
@@ -71,7 +73,8 @@ SC_MODULE(conv_block){
 		conv_cntrl->cmp_4(cmp_4);
 		conv_cntrl->cmp_9(cmp_9);
 		conv_cntrl->start_conv(start_conv);
-
+		//std::cout << "CONV_BLOCK.h conv_cntrl = new conv_controller\n";
+		
 
 
 	}

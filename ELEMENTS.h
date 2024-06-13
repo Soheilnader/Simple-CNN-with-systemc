@@ -168,7 +168,7 @@ public:
 template<int ADDRESS, int WORD_LENGTH>
 class Memory : public sc_module {
 public:
-	sc_in<sc_lv<ADDRESS>> addr_rd1, addr_rd2, addr_rd3, addr_wr;
+	sc_in<sc_lv<ADDRESS>> addr_rd1, addr_rd2, addr_rd3;
 	sc_in<sc_lv<WORD_LENGTH>> data_wr;
 	sc_out<sc_lv<WORD_LENGTH>> data_rd1, data_rd2, data_rd3;
 	sc_in<sc_logic> clk, write_en, read1, read2, read3;
@@ -180,7 +180,7 @@ public:
 	void memread1();
 	void memread2();
 	void memread3();
-	void memwrite();
+	//void memwrite();
 	void memdump();
 
 	SC_HAS_PROCESS(Memory);
@@ -200,9 +200,9 @@ Memory<ADDRESS, WORD_LENGTH>::Memory(sc_module_name)
 	sensitive << clk;
 	SC_METHOD(memread3);
 	sensitive << clk;
-	SC_METHOD(memwrite);
-	sensitive << clk;
-	SC_THREAD(memdump);
+	//SC_METHOD(memwrite);
+	//sensitive << clk;
+	//SC_THREAD(memdump);
 }
 
 template<int ADDRESS, int WORD_LENGTH>
@@ -218,7 +218,7 @@ void Memory<ADDRESS, WORD_LENGTH>::meminit() {
 		cout << "Init at: " << i << " writes: " << data << '\n';
 	}
 }
-
+/*
 template<int ADDRESS, int WORD_LENGTH>
 void Memory<ADDRESS, WORD_LENGTH>::memwrite() {
 	sc_uint<ADDRESS> ad_w;
@@ -229,7 +229,7 @@ void Memory<ADDRESS, WORD_LENGTH>::memwrite() {
 		}
 	}
 }
-
+*/
 template<int ADDRESS, int WORD_LENGTH>
 void Memory<ADDRESS, WORD_LENGTH>::memread1() {
 	sc_uint<ADDRESS> ad1;
@@ -262,7 +262,7 @@ void Memory<ADDRESS, WORD_LENGTH>::memread3() {
 		}
 	}
 }
-
+/*
 template<int ADDRESS, int WORD_LENGTH>
 void Memory<ADDRESS, WORD_LENGTH>::memdump() {
 	int i;
@@ -274,5 +274,5 @@ void Memory<ADDRESS, WORD_LENGTH>::memdump() {
 		out << i << ":\t" << data << "\n";
 	}
 }
-
+*/
 #endif

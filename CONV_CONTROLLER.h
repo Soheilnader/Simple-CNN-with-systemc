@@ -14,11 +14,13 @@ SC_MODULE(conv_controller){
 
 	SC_CTOR(conv_controller)
 	{
+		//std::cout << "CONV_CONTROLLER.h SC_CTOR(conv_controller)\n";
+
 		SC_METHOD(comb_S_function);
 		sensitive << cmp_4 << cmp_9 << start_conv << p_state;
 		SC_METHOD(comb_O_function);
 		sensitive << p_state;
-		SC_METHOD(seq_function);
+		SC_THREAD(seq_function);
 		sensitive << clk << rst;
 	}
 	void comb_S_function();

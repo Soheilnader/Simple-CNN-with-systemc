@@ -81,6 +81,8 @@ void conv_controller::comb_O_function(){
 		sel1 = "00";
 		sel2 = "00";
 	}
+	//std::cout << "conv_controller.cpp conv_controller::comb_O_function(){\n";
+
 }
 
 void conv_controller::comb_S_function(){
@@ -129,6 +131,8 @@ void conv_controller::comb_S_function(){
 	default:
 		n_state = IDLE;
 	}
+	//std::cout << "conv_controller.cpp void conv_controller::comb_S_function(){\n";
+
 }
 
 void conv_controller::seq_function(){
@@ -140,4 +144,6 @@ void conv_controller::seq_function(){
 			p_state = n_state;
 		wait();
 	}
+	//std::cout << "conv_controller.cpp void conv_controller::seq_function(){\n";
+
 }

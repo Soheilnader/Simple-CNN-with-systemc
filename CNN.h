@@ -61,19 +61,21 @@ SC_MODULE(cnn){
 	maxpool* maxpool3;
 	result* result_blk;
 	Memory<4, 8>* MEM;
+	sc_signal<sc_logic> BIT_0, BIT_1;
 
 	SC_CTOR(cnn){
-		sc_signal<sc_logic> BIT_0, BIT_1;
+		//std::cout << "CNN.h SC_CTOR(cnn){\n";
+
 		BIT_0.write(SC_LOGIC_0);
 		BIT_1.write(SC_LOGIC_1);
 
-
+		
 
 		conv_blk1 = new conv_block<BIAS0, K00, K01, K02, K03, K04, K05, K06, K07, K08>("conv_blk1");
 		conv_blk1->clk(clk);
 		conv_blk1->rst(rst);
 		conv_blk1->read(read[0]);
-		conv_blk1->done_conv(done_conv[0]);
+		conv_blk1->done_conv(done);
 		conv_blk1->start_conv(start);
 		conv_blk1->data_rd(data_rd[0]);
 		conv_blk1->addr_rd(addr_rd[0]);
@@ -81,6 +83,7 @@ SC_MODULE(cnn){
 		conv_blk1->val_1(val_1[0]);
 		conv_blk1->val_2(val_2[0]);
 		conv_blk1->val_3(val_3[0]);
+		//std::cout << "CNN.h conv_blk1 = new conv_block\n";
 
 		conv_blk2 = new conv_block<BIAS1, K10, K11, K12, K13, K14, K15, K16, K17, K18>("conv_blk2");
 		conv_blk2->clk(clk);
@@ -94,6 +97,7 @@ SC_MODULE(cnn){
 		conv_blk2->val_1(val_1[1]);
 		conv_blk2->val_2(val_2[1]);
 		conv_blk2->val_3(val_3[1]);
+		//std::cout << "CNN.h conv_blk2 = new conv_block\n";
 
 		conv_blk3 = new conv_block<BIAS2, K20, K21, K22, K23, K24, K25, K26, K27, K28>("conv_blk3");
 		conv_blk3->clk(clk);
@@ -107,6 +111,7 @@ SC_MODULE(cnn){
 		conv_blk3->val_1(val_1[2]);
 		conv_blk3->val_2(val_2[2]);
 		conv_blk3->val_3(val_3[2]);
+		//std::cout << "CNN.h conv_blk3 = new conv_block\n";
 
 		relu1 = new relu("relu1");
 		relu1->in0(val_0[0]);
@@ -117,6 +122,7 @@ SC_MODULE(cnn){
 		relu1->val1(relu_1[0]);
 		relu1->val2(relu_2[0]);
 		relu1->val3(relu_3[0]);
+		//std::cout << "CNN.h relu1 = new relu\n";
 
 		relu2 = new relu("relu2");
 		relu2->in0(val_0[1]);
@@ -127,6 +133,7 @@ SC_MODULE(cnn){
 		relu2->val1(relu_1[1]);
 		relu2->val2(relu_2[1]);
 		relu2->val3(relu_3[1]);
+		//std::cout << "CNN.h relu2 = new relu\n";
 
 		relu3 = new relu("relu3");
 		relu3->in0(val_0[2]);
@@ -137,34 +144,39 @@ SC_MODULE(cnn){
 		relu3->val1(relu_1[2]);
 		relu3->val2(relu_2[2]);
 		relu3->val3(relu_3[2]);
+		//std::cout << "CNN.h relu3 = new relu\n";
 
 		maxpool1 = new maxpool("maxpool1");
 		maxpool1->in0(relu_0[0]);
-		maxpool1->in0(relu_1[0]);
-		maxpool1->in0(relu_2[0]);
-		maxpool1->in0(relu_3[0]);
+		maxpool1->in1(relu_1[0]);
+		maxpool1->in2(relu_2[0]);
+		maxpool1->in3(relu_3[0]);
 		maxpool1->max(max[0]);
+		//std::cout << "CNN.h maxpool1 = new maxpool\n";
 
 		maxpool2 = new maxpool("maxpool2");
 		maxpool2->in0(relu_0[1]);
-		maxpool2->in0(relu_1[1]);
-		maxpool2->in0(relu_2[1]);
-		maxpool2->in0(relu_3[1]);
+		maxpool2->in1(relu_1[1]);
+		maxpool2->in2(relu_2[1]);
+		maxpool2->in3(relu_3[1]);
 		maxpool2->max(max[1]);
+		//std::cout << "CNN.h maxpool2 = new maxpool\n";
 
 		maxpool3 = new maxpool("maxpool3");
 		maxpool3->in0(relu_0[2]);
-		maxpool3->in0(relu_1[2]);
-		maxpool3->in0(relu_2[2]);
-		maxpool3->in0(relu_3[2]);
+		maxpool3->in1(relu_1[2]);
+		maxpool3->in2(relu_2[2]);
+		maxpool3->in3(relu_3[2]);
 		maxpool3->max(max[2]);
+		//std::cout << "CNN.h maxpool3 = new maxpool\n";
 
 		result_blk = new result("result_blk");
 		result_blk->in0(max[0]);
 		result_blk->in1(max[1]);
 		result_blk->in2(max[2]);
 		result_blk->pattern(pattern);
-
+		//std::cout << "CNN.h result_blk = new result\n";
+		
 		MEM = new Memory<4, 8>("Memory");
 		MEM->clk(clk);
 		MEM->write_en(BIT_0);
@@ -178,8 +190,9 @@ SC_MODULE(cnn){
 		MEM->data_rd2(data_rd[1]);
 		MEM->data_rd3(data_rd[2]);
 		MEM->data_wr(data_wr);
-
-
+		//std::cout << "CNN.h MEM = new Memory<4, 8>\n";
+		
+		//done->write(done_conv[0]);
 
 	}
 };

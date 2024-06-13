@@ -55,9 +55,24 @@ int sc_main(int argc, char *argv[])
 	sc_trace(VCDFile, TOP->rst, "rst");
 	sc_trace(VCDFile, TOP->start, "start");
 	sc_trace(VCDFile, TOP->pattern, "pattern");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_cntrl->load_data, "load_data"); 
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_dec, "s_dec"); 
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k0, "K00");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k1, "K01");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k2, "K02");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k3, "K03");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->bias, "bias");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_cnt_4, "s_cnt_4");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_cnt_4_LOWER, "s_cnt_4_LOWER");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_dec_0, "s_dec_0");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_dec_1, "s_dec_1");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_dec_2, "s_dec_2");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_dec_3, "s_dec_3");
+
+	sc_trace(VCDFile, TOP->done, "done");
 
 	std::cout << "Sim Start!\n";
-	sc_start(2000, SC_NS);
+	sc_start(6000, SC_NS);
 	std::cout << "Sim Done!\n";
 	return 0;
 }

@@ -68,15 +68,16 @@ SC_MODULE(conv_datapath){
 
 
 	SC_CTOR(conv_datapath){
+		//std::cout << "CONV_DATAPATH.h SC_CTOR(conv_datapath){\n";
 
-
-		
 		cnt_j = new nBitCounter("cnt_j");
 		cnt_j->clk(clk); 
 		cnt_j->rst(rst); 
 		cnt_j->en(en_j); 
 		cnt_j->clr(s_cmp_j); 
 		cnt_j->q(s_cnt_j);
+		//std::cout << "CONV_DATAPATH.h cnt_j = new nBitCounter\n";
+
 		cmp_j = new nBitComparator("cmp_j");
 		cmp_j->in1(s_cnt_j);
 		cmp_j->in2(VALUE_3);
@@ -230,10 +231,11 @@ SC_MODULE(conv_datapath){
 		V_3->clr(BIT_0);
 		V_3->d(s_data);
 		V_3->q(val3);
-		
+		//std::cout << "CONV_DATAPATH.h V_3 = new nBitRegister\n";
+
 
 		SC_METHOD(assigning);
-		sensitive << s_cmp_9 << s_cmp_4 << s_addr << s_addr_LOWER;
+		sensitive << s_cmp_9 << s_cmp_4 << s_addr << s_addr_LOWER << s_cnt_4 << s_cnt_9 << s_dec;
 	}
 
 		void assigning(){
@@ -269,6 +271,8 @@ SC_MODULE(conv_datapath){
 			k7 = sc_lv<8>(K7);
 
 			s_addr_LOWER.write(s_addr.read().range(3, 0));
+
+			//std::cout << "CONV_DATAPATH.h void assigning(){\n";
 
 		}
 	
