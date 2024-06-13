@@ -76,7 +76,7 @@ void conv_controller::comb_O_function(){
 	case WRITE1:
 		en_4 = SC_LOGIC_1;
 		en_dec = SC_LOGIC_1;
-		load_data = SC_LOGIC_1;
+		clr_data = SC_LOGIC_1;
 		state_num = 10;
 
 		break;

@@ -115,9 +115,9 @@ SC_MODULE(cnn){
 
 		relu1 = new relu("relu1");
 		relu1->in0(val_0[0]);
-		relu1->in1(val_0[0]);
-		relu1->in2(val_0[0]);
-		relu1->in3(val_0[0]);
+		relu1->in1(val_1[0]);
+		relu1->in2(val_2[0]);
+		relu1->in3(val_3[0]);
 		relu1->val0(relu_0[0]);
 		relu1->val1(relu_1[0]);
 		relu1->val2(relu_2[0]);
@@ -126,9 +126,9 @@ SC_MODULE(cnn){
 
 		relu2 = new relu("relu2");
 		relu2->in0(val_0[1]);
-		relu2->in1(val_0[1]);
-		relu2->in2(val_0[1]);
-		relu2->in3(val_0[1]);
+		relu2->in1(val_1[1]);
+		relu2->in2(val_2[1]);
+		relu2->in3(val_3[1]);
 		relu2->val0(relu_0[1]);
 		relu2->val1(relu_1[1]);
 		relu2->val2(relu_2[1]);
@@ -137,9 +137,9 @@ SC_MODULE(cnn){
 
 		relu3 = new relu("relu3");
 		relu3->in0(val_0[2]);
-		relu3->in1(val_0[2]);
-		relu3->in2(val_0[2]);
-		relu3->in3(val_0[2]);
+		relu3->in1(val_1[2]);
+		relu3->in2(val_2[2]);
+		relu3->in3(val_3[2]);
 		relu3->val0(relu_0[2]);
 		relu3->val1(relu_1[2]);
 		relu3->val2(relu_2[2]);
