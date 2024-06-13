@@ -57,17 +57,28 @@ int sc_main(int argc, char *argv[])
 	sc_trace(VCDFile, TOP->pattern, "pattern");
 	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_cntrl->load_data, "load_data"); 
 	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_dec, "s_dec"); 
-	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k0, "K00");
-	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k1, "K01");
-	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k2, "K02");
-	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k3, "K03");
-	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->bias, "bias");
+	//sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k0, "K00");
+	//sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k1, "K01");
+	//sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k2, "K02");
+	//sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->k3, "K03");
+	//sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->bias, "bias");
 	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_cnt_4, "s_cnt_4");
 	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_cnt_4_LOWER, "s_cnt_4_LOWER");
 	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_dec_0, "s_dec_0");
 	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_dec_1, "s_dec_1");
 	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_dec_2, "s_dec_2");
 	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_dec_3, "s_dec_3");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->val0, "val0");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_data, "s_data");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_add_out, "s_add_out");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_add1, "s_add1");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_add2, "s_add2");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->sel4, "sel4");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_cntrl->state_num, "state_num");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_cnt_9, "s_cnt_9");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_cnt_9_LOWER, "s_cnt_9_LOWER");
+	sc_trace(VCDFile, TOP->cnn_blk->conv_blk1->conv_dp->s_mux9to1, "s_mux9to1");
+
 
 	sc_trace(VCDFile, TOP->done, "done");
 

@@ -269,6 +269,7 @@ SC_MODULE(conv_datapath){
 			k5 = sc_lv<8>(K5);
 			k6 = sc_lv<8>(K6);
 			k7 = sc_lv<8>(K7);
+			k8 = sc_lv<8>(K8);
 
 			s_addr_LOWER.write(s_addr.read().range(3, 0));
 

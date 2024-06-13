@@ -11,7 +11,7 @@ SC_MODULE(conv_controller){
 	};
 
 	sc_signal <states> p_state, n_state;
-
+	int state_num;
 	SC_CTOR(conv_controller)
 	{
 		//std::cout << "CONV_CONTROLLER.h SC_CTOR(conv_controller)\n";

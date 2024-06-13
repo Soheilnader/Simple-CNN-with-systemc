@@ -19,28 +19,41 @@ void conv_controller::comb_O_function(){
 	switch (p_state){
 	case IDLE:
 		done_conv = SC_LOGIC_1;
+		state_num = 0;
 		break;
 	case START:
+		state_num = 1;
+
 		break;
 	case ADDR1:
 		load_addr = SC_LOGIC_1;
 		en_j = SC_LOGIC_1;
+		state_num = 2;
+
 		break;
 	case ADDR2:
 		sel1 = "10";
 		load_addr = SC_LOGIC_1;
+		state_num = 3;
+
 		break;
 	case ADDR3:
 		sel1 = "01";
 		load_addr = SC_LOGIC_1;
+		state_num = 4;
+
 		break;
 	case ADDR4:
 		sel1 = "10";
 		sel2 = "01";
 		load_addr = SC_LOGIC_1;
+		state_num = 5;
+
 		break;
 	case CALCULATE1:
 		read = SC_LOGIC_1;
+		state_num = 6;
+
 		break;
 	case CALCULATE2:
 		sel1 = "10";
@@ -50,20 +63,30 @@ void conv_controller::comb_O_function(){
 		load_data = SC_LOGIC_1;
 		clr_addr = SC_LOGIC_1;
 		en_9 = SC_LOGIC_1;
+		state_num = 7;
+
 		break;
 	case CALCULATE3:
 		sel1 = "11";
 		sel4 = SC_LOGIC_1;
 		load_data = SC_LOGIC_1;
+		state_num = 9;
+
 		break;
 	case WRITE1:
 		en_4 = SC_LOGIC_1;
 		en_dec = SC_LOGIC_1;
 		load_data = SC_LOGIC_1;
+		state_num = 10;
+
 		break;
 	case WRITE2:
+		state_num = 11;
+
 		break;
 	case WAIT:
+		state_num = 8;
+
 		break;
 	default:
 		read = SC_LOGIC_0;

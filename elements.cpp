@@ -63,10 +63,15 @@ void dec2To4::decoding() {
 
 void relu::reluing() {
 	//std::cout << "reluing\n";
-	val0->write((in0->read().to_int() < 0) == '1' ? "00000000" : in0->read());
-	val1->write((in1->read().to_int() < 0) == '1' ? "00000000" : in1->read());
-	val2->write((in2->read().to_int() < 0) == '1' ? "00000000" : in2->read());
-	val3->write((in3->read().to_int() < 0) == '1' ? "00000000" : in3->read());
+	//val0->write((in0->read().to_int() < 0) == '1' ? "00000000" : in0->read());
+	//val1->write((in1->read().to_int() < 0) == '1' ? "00000000" : in1->read());
+	//val2->write((in2->read().to_int() < 0) == '1' ? "00000000" : in2->read());
+	//val3->write((in3->read().to_int() < 0) == '1' ? "00000000" : in3->read());
+	val0->write((in0->read()[7] == '1' ? "00000000" : in0->read()));
+	val1->write((in1->read()[7] == '1' ? "00000000" : in1->read()));
+	val2->write((in2->read()[7] == '1' ? "00000000" : in2->read()));
+	val3->write((in3->read()[7] == '1' ? "00000000" : in3->read()));
+
 }
 
 void maxpool::maxpooling() {
