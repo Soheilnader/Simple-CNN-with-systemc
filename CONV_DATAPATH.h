@@ -2,7 +2,7 @@
 #include "ELEMENTS.h"
 
 
-template<int BIAS, int K0, int K1, int K2, int K3, int K4, int K5, int K6, int K7, int K8>
+//template<int BIAS, int K0, int K1, int K2, int K3, int K4, int K5, int K6, int K7, int K8>
 SC_MODULE(conv_datapath){
 
 	sc_in <sc_logic> clk, rst;
@@ -66,9 +66,20 @@ SC_MODULE(conv_datapath){
 	sc_signal<sc_lv<8>> k0, k1, k2, k3, k4, k5, k6, k7, k8;
 	sc_signal<sc_lv<4>> s_addr_LOWER;
 
-
-	SC_CTOR(conv_datapath){
+	SC_HAS_PROCESS(conv_datapath);
+	conv_datapath::conv_datapath(sc_module_name, int BIAS, int K0, int K1, int K2, int K3, int K4, int K5, int K6, int K7, int K8){
+	//SC_CTOR(conv_datapath){
 		//std::cout << "CONV_DATAPATH.h SC_CTOR(conv_datapath){\n";
+		bias = sc_lv<8>(BIAS);
+		k0 = sc_lv<8>(K0);
+		k1 = sc_lv<8>(K1);
+		k2 = sc_lv<8>(K2);
+		k3 = sc_lv<8>(K3);
+		k4 = sc_lv<8>(K4);
+		k5 = sc_lv<8>(K5);
+		k6 = sc_lv<8>(K6);
+		k7 = sc_lv<8>(K7);
+		k8 = sc_lv<8>(K8);
 
 		cnt_j = new nBitCounter("cnt_j");
 		cnt_j->clk(clk); 
@@ -256,20 +267,11 @@ SC_MODULE(conv_datapath){
 			VALUE_4.write("00000100");
 			VALUE_9.write("00001001");
 			VALUE_0.write("00000000");
-			bias = sc_lv<8>(BIAS);
 
 			BIT_0.write(SC_LOGIC_0);
 			BIT_1.write(SC_LOGIC_1);
 
-			k0 = sc_lv<8>(K0);
-			k1 = sc_lv<8>(K1);
-			k2 = sc_lv<8>(K2);
-			k3 = sc_lv<8>(K3);
-			k4 = sc_lv<8>(K4);
-			k5 = sc_lv<8>(K5);
-			k6 = sc_lv<8>(K6);
-			k7 = sc_lv<8>(K7);
-			k8 = sc_lv<8>(K8);
+
 
 			s_addr_LOWER.write(s_addr.read().range(3, 0));
 

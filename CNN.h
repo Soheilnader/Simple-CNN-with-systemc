@@ -50,15 +50,22 @@ SC_MODULE(cnn){
 	sc_signal <sc_lv<4>> addr_rd[NUM_OF_CONVS];
 
 
-	conv_block<BIAS0, K00, K01, K02, K03, K04, K05, K06, K07, K08>* conv_blk1;
-	conv_block<BIAS1, K10, K11, K12, K13, K14, K15, K16, K17, K18>* conv_blk2;
-	conv_block<BIAS2, K20, K21, K22, K23, K24, K25, K26, K27, K28>* conv_blk3;
-	relu* relu1;
-	relu* relu2;
-	relu* relu3;
-	maxpool* maxpool1;
-	maxpool* maxpool2;
-	maxpool* maxpool3;
+	//conv_block<BIAS0, K00, K01, K02, K03, K04, K05, K06, K07, K08>* conv_blk1;
+	//conv_block<BIAS1, K10, K11, K12, K13, K14, K15, K16, K17, K18>* conv_blk2;
+	//conv_block<BIAS2, K20, K21, K22, K23, K24, K25, K26, K27, K28>* conv_blk3;
+	//conv_block* conv_blk1;
+	//conv_block* conv_blk2;
+	//conv_block* conv_blk3;
+	conv_block* conv_blk[NUM_OF_CONVS];
+	//relu* relu1;
+	//relu* relu2;
+	//relu* relu3;
+	relu* relu_blk[NUM_OF_CONVS];
+	//maxpool* maxpool1;
+	//maxpool* maxpool2;
+	//maxpool* maxpool3;
+	maxpool* maxpool_blk[NUM_OF_CONVS];
+
 	result* result_blk;
 	Memory<4, 8>* MEM;
 	sc_signal<sc_logic> BIT_0, BIT_1;
@@ -68,10 +75,70 @@ SC_MODULE(cnn){
 
 		BIT_0.write(SC_LOGIC_0);
 		BIT_1.write(SC_LOGIC_1);
+		//done->write(done_conv[0]);
+		int BIAS[3] = { BIAS0, BIAS1, BIAS2 };
+		int K[3][9] = {
+			{ K00, K01, K02, K03, K04, K05, K06, K07, K08 },
+			{ K10, K11, K12, K13, K14, K15, K16, K17, K18 },
+			{ K20, K21, K22, K23, K24, K25, K26, K27, K28 }
+		};
 
-		
+		for (int i = 0; i < NUM_OF_CONVS; i++){
+			conv_blk[i] = new conv_block("conv_blk", BIAS[i], K[i][0], K[i][1], K[i][2], K[i][3], K[i][4], K[i][5], K[i][6], K[i][7], K[i][8]);
+			conv_blk[i]->clk(clk);
+			conv_blk[i]->rst(rst);
+			conv_blk[i]->read(read[i]);
+			conv_blk[i]->done_conv(done_conv[i]);
+			conv_blk[i]->start_conv(start);
+			conv_blk[i]->data_rd(data_rd[i]);
+			conv_blk[i]->addr_rd(addr_rd[i]);
+			conv_blk[i]->val_0(val_0[i]);
+			conv_blk[i]->val_1(val_1[i]);
+			conv_blk[i]->val_2(val_2[i]);
+			conv_blk[i]->val_3(val_3[i]);
 
-		conv_blk1 = new conv_block<BIAS0, K00, K01, K02, K03, K04, K05, K06, K07, K08>("conv_blk1");
+			relu_blk[i] = new relu("relu");
+			relu_blk[i]->in0(val_0[i]);
+			relu_blk[i]->in1(val_1[i]);
+			relu_blk[i]->in2(val_2[i]);
+			relu_blk[i]->in3(val_3[i]);
+			relu_blk[i]->val0(relu_0[i]);
+			relu_blk[i]->val1(relu_1[i]);
+			relu_blk[i]->val2(relu_2[i]);
+			relu_blk[i]->val3(relu_3[i]);
+
+			maxpool_blk[i] = new maxpool("maxpool");
+			maxpool_blk[i]->in0(relu_0[i]);
+			maxpool_blk[i]->in1(relu_1[i]);
+			maxpool_blk[i]->in2(relu_2[i]);
+			maxpool_blk[i]->in3(relu_3[i]);
+			maxpool_blk[i]->max(max[i]);
+			//std::cout << "CNN.h conv_blk1 = new conv_block\n";
+		}
+
+		result_blk = new result("result_blk");
+		result_blk->in0(max[0]);
+		result_blk->in1(max[1]);
+		result_blk->in2(max[2]);
+		result_blk->pattern(pattern);
+		//std::cout << "CNN.h result_blk = new result\n";
+
+		MEM = new Memory<4, 8>("Memory");
+		MEM->clk(clk);
+		MEM->write_en(BIT_0);
+		MEM->read1(read[0]);
+		MEM->read2(read[1]);
+		MEM->read3(read[2]);
+		MEM->addr_rd1(addr_rd[0]);
+		MEM->addr_rd2(addr_rd[1]);
+		MEM->addr_rd3(addr_rd[2]);
+		MEM->data_rd1(data_rd[0]);
+		MEM->data_rd2(data_rd[1]);
+		MEM->data_rd3(data_rd[2]);
+		MEM->data_wr(data_wr);
+
+		/*
+		conv_blk1 = new conv_block("conv_blk1", BIAS0, K00, K01, K02, K03, K04, K05, K06, K07, K08);
 		conv_blk1->clk(clk);
 		conv_blk1->rst(rst);
 		conv_blk1->read(read[0]);
@@ -85,7 +152,7 @@ SC_MODULE(cnn){
 		conv_blk1->val_3(val_3[0]);
 		//std::cout << "CNN.h conv_blk1 = new conv_block\n";
 
-		conv_blk2 = new conv_block<BIAS1, K10, K11, K12, K13, K14, K15, K16, K17, K18>("conv_blk2");
+		conv_blk2 = new conv_block("conv_blk2", BIAS1, K10, K11, K12, K13, K14, K15, K16, K17, K18);
 		conv_blk2->clk(clk);
 		conv_blk2->rst(rst);
 		conv_blk2->read(read[1]);
@@ -99,7 +166,7 @@ SC_MODULE(cnn){
 		conv_blk2->val_3(val_3[1]);
 		//std::cout << "CNN.h conv_blk2 = new conv_block\n";
 
-		conv_blk3 = new conv_block<BIAS2, K20, K21, K22, K23, K24, K25, K26, K27, K28>("conv_blk3");
+		conv_blk3 = new conv_block("conv_blk3", BIAS2, K20, K21, K22, K23, K24, K25, K26, K27, K28);
 		conv_blk3->clk(clk);
 		conv_blk3->rst(rst);
 		conv_blk3->read(read[2]);
@@ -112,7 +179,8 @@ SC_MODULE(cnn){
 		conv_blk3->val_2(val_2[2]);
 		conv_blk3->val_3(val_3[2]);
 		//std::cout << "CNN.h conv_blk3 = new conv_block\n";
-
+		*/
+		/*
 		relu1 = new relu("relu1");
 		relu1->in0(val_0[0]);
 		relu1->in1(val_1[0]);
@@ -145,7 +213,8 @@ SC_MODULE(cnn){
 		relu3->val2(relu_2[2]);
 		relu3->val3(relu_3[2]);
 		//std::cout << "CNN.h relu3 = new relu\n";
-
+		*/
+		/*
 		maxpool1 = new maxpool("maxpool1");
 		maxpool1->in0(relu_0[0]);
 		maxpool1->in1(relu_1[0]);
@@ -169,30 +238,16 @@ SC_MODULE(cnn){
 		maxpool3->in3(relu_3[2]);
 		maxpool3->max(max[2]);
 		//std::cout << "CNN.h maxpool3 = new maxpool\n";
+		*/
 
-		result_blk = new result("result_blk");
-		result_blk->in0(max[0]);
-		result_blk->in1(max[1]);
-		result_blk->in2(max[2]);
-		result_blk->pattern(pattern);
-		//std::cout << "CNN.h result_blk = new result\n";
-		
-		MEM = new Memory<4, 8>("Memory");
-		MEM->clk(clk);
-		MEM->write_en(BIT_0);
-		MEM->read1(read[0]);
-		MEM->read2(read[1]);
-		MEM->read3(read[2]);
-		MEM->addr_rd1(addr_rd[0]);
-		MEM->addr_rd2(addr_rd[1]);
-		MEM->addr_rd3(addr_rd[2]);
-		MEM->data_rd1(data_rd[0]);
-		MEM->data_rd2(data_rd[1]);
-		MEM->data_rd3(data_rd[2]);
-		MEM->data_wr(data_wr);
 		//std::cout << "CNN.h MEM = new Memory<4, 8>\n";
 		
 		//done->write(done_conv[0]);
 
+		SC_METHOD(assign);
+		sensitive << done_conv[0];
+	}
+	void assign(){
+		done->write(done_conv[0]);
 	}
 };

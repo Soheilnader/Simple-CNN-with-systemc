@@ -1,4 +1,4 @@
-﻿Build started 6/14/2024 2:27:13 AM.
+﻿Build started 6/14/2024 6:00:33 PM.
      1>Project "D:\Work\Uni2\Terme 2\VHDL\CA3\Code\CNN\CNN\CNN.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\systemc-2.3.1\src" /I"C:\systemc-2.3.1\src" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_DEPRECATE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /vmg cnn_TB.cpp main.cpp
@@ -7,8 +7,8 @@
                  d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(234) : while compiling class template member function 'void Memory<4,8>::memread1(void)'
                  d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(197) : see reference to function template instantiation 'void Memory<4,8>::memread1(void)' being compiled
                  d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(192) : while compiling class template member function 'Memory<4,8>::Memory(sc_core::sc_module_name)'
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\cnn.h(180) : see reference to function template instantiation 'Memory<4,8>::Memory(sc_core::sc_module_name)' being compiled
-                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\cnn.h(180) : see reference to class template instantiation 'Memory<4,8>' being compiled
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\cnn.h(126) : see reference to function template instantiation 'Memory<4,8>::Memory(sc_core::sc_module_name)' being compiled
+                 d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\cnn.h(126) : see reference to class template instantiation 'Memory<4,8>' being compiled
      1>d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(250): warning C4244: 'argument' : conversion from 'sc_dt::uint_type' to 'int', possible loss of data
                  d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(245) : while compiling class template member function 'void Memory<4,8>::memread2(void)'
                  d:\work\uni2\terme 2\vhdl\ca3\code\cnn\cnn\elements.h(199) : see reference to function template instantiation 'void Memory<4,8>::memread2(void)' being compiled
@@ -47,4 +47,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:08.10
+Time Elapsed 00:00:12.12

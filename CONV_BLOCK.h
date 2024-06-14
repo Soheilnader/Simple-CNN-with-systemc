@@ -2,7 +2,7 @@
 #include "CONV_DATAPATH.h"
 #include "CONV_CONTROLLER.h"
 
-template<int BIAS, int K0, int K1, int K2, int K3, int K4, int K5, int K6, int K7, int K8>
+//template<int BIAS, int K0, int K1, int K2, int K3, int K4, int K5, int K6, int K7, int K8>
 SC_MODULE(conv_block){
 	sc_in <sc_logic> clk, rst, start_conv;
 	sc_out <sc_logic> done_conv, read;
@@ -19,16 +19,17 @@ SC_MODULE(conv_block){
 	sc_signal <sc_logic> cmp_4, cmp_9;
 
 
-	conv_datapath<BIAS, K0, K1, K2, K3, K4, K5, K6, K7, K8>* conv_dp;
+	conv_datapath* conv_dp;
 	conv_controller* conv_cntrl;
+	
 
-
-
-	SC_CTOR(conv_block){
+	SC_HAS_PROCESS(conv_block);
+	conv_block::conv_block(sc_module_name, int BIAS, int K0, int K1, int K2, int K3, int K4, int K5, int K6, int K7, int K8){
+	//SC_CTOR(conv_block){
 		//std::cout << "CONV_BLOCK.h SC_CTOR(conv_block){\n";
 
-
-		conv_dp = new conv_datapath<BIAS, K0, K1, K2, K3, K4, K5, K6, K7, K8>("conv_dp");
+		//int bias = BIAS;
+		conv_dp = new conv_datapath("conv_dp", BIAS, K0, K1, K2, K3, K4, K5, K6, K7, K8);
 		conv_dp->clk(clk);
 		conv_dp->rst(rst);
 		conv_dp->data_rd(data_rd);
