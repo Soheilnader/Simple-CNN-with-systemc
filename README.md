@@ -20,3 +20,38 @@ Figure 4: Max Pooling
 
 Convolutional blocks play an important role in the early stages of a Convolutional Neural Network (CNN). Their primary objective is to extract features from the input image. These blocks are usually repeated several times throughout the network, with each block extracting more complex features from the output of the previous block. This hierarchical structure allows the network to learn increasingly complex features, leading to better image recognition performance.
 
+## Implementation
+In Figure 1, the complete schematic of this circuit is illustrated. Each component is described below:
+### RAM block
+To save the input image at the beginning of the task, a RAM block with 16 rows (8-bit) is required. Once a complete positive pulse is received on the start input signal, the convolutional blocks begin their computations concurrently. Once all computations are completed, the done output signal will be asserted.
+
+### Convolutional Blocks
+To implement the required functionality, three convolutional blocks are necessary. These blocks need to be instantiated using a generate statement, and the number of blocks used must be configurable using generic parameters. The convolutional block is a sequential module that employs one adder and one multiplier. The kernel's values are obtained using 9 generic parameters. This module begins its computations after a complete pulse is received on the start_conv input signal. Additionally, the done_conv output signal must be asserted when the results are ready. The kernels used in this project are as follows:
+Pattern 1:
+
+| | | |
+| :------------: | 
+|0   |1   |0   |
+|1   | 1  | 1  |
+|0   |  1 |  0 |
+Bias = -1
+
+Pattern 2:
+
+| | | |
+| :------------: | 
+|1   |1   |1   |
+|1   | 0  | 0  |
+|1   |  1 |  1 |
+Bias = -2
+
+Pattern:
+
+| |||
+| :------------: | 
+|1   |1   |1   |
+|0   | 1  | 0  |
+|0   |  1 | 0 |
+
+Bias = -2
+
