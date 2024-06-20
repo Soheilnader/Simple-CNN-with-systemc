@@ -28,7 +28,7 @@ To save the input image at the beginning of the task, a RAM block with 16 rows (
 ### Convolutional Blocks
 To implement the required functionality, three convolutional blocks are necessary. These blocks need to be instantiated using a generate statement, and the number of blocks used must be configurable using generic parameters. The convolutional block is a sequential module that employs one adder and one multiplier. The kernel's values are obtained using 9 generic parameters. This module begins its computations after a complete pulse is received on the start_conv input signal. Additionally, the done_conv output signal must be asserted when the results are ready. The kernels used in this project are as follows:
 
-Pattern 1:
+#### Pattern 1:
 
 |   |   |   |
 |---|---|---|
@@ -38,7 +38,7 @@ Pattern 1:
 
 Bias = -1
 
-Pattern 2:
+#### Pattern 2:
 
 |   |   |   |
 |---|---|---|
@@ -48,7 +48,7 @@ Pattern 2:
 
 Bias = -2
 
-Pattern 3:
+#### Pattern 3:
 
 |   |   |   |
 |---|---|---|
@@ -58,4 +58,14 @@ Pattern 3:
 
 Bias = -2
 
+This block differs from other components as it comprises both a controller and datapath:
+#### Datapath:
+Designing the datapath and controller was a challenging task, as only one adder and multiplier were available for generating addresses and calculating values. To overcome this, four counters (cnt_j, cnt_i, cnt_y, and cnt_x) were utilized to generate addresses representing column and row index and column and row offset of the kernel. Cnt_j and cnt_i were limited by comparators that compared their values with 2, which is the kernel size minus 1. Moreover, the values of x and y were limited by Image_size minus Kernel_size, which is 1. Cnt_9 and cnt_4 were used to select kernel values and load output values, respectively. Additionally, two registers named addr and data were used as address and data accumulators.
+![Figure 5: Datapath](https://github.com/Soheilnader/Simple-CNN-with-systemc-RTL/blob/main/doc/image/CONV_DP(1).jpg?raw=true " Figure 5: Datapath")
+Figure 5: Datapath
+
+The formula of generating address in order to read data from RAM is as follows: (j,i: index	y, x: offset)
+$$
+\text{addr} = (j + 4 \times j) + y + 4 \times x
+$$
 
