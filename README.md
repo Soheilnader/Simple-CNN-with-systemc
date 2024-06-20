@@ -27,31 +27,35 @@ To save the input image at the beginning of the task, a RAM block with 16 rows (
 
 ### Convolutional Blocks
 To implement the required functionality, three convolutional blocks are necessary. These blocks need to be instantiated using a generate statement, and the number of blocks used must be configurable using generic parameters. The convolutional block is a sequential module that employs one adder and one multiplier. The kernel's values are obtained using 9 generic parameters. This module begins its computations after a complete pulse is received on the start_conv input signal. Additionally, the done_conv output signal must be asserted when the results are ready. The kernels used in this project are as follows:
+
 Pattern 1:
 
 |   |   |   |
-| :------------: | | :------------: || :------------: |
-|0   |1   |0   |
-|1   | 1  | 1  |
-|0   |  1 |  0 |
+|---|---|---|
+| 0 | 1 | 0 |
+| 1 | 1 | 1 |
+| 1 | 0 | 1 |
+
 Bias = -1
 
 Pattern 2:
 
-| | | |
-| :------------: | 
-|1   |1   |1   |
-|1   | 0  | 0  |
-|1   |  1 |  1 |
-Bias = -2
-
-Pattern:
-
-| |||
-| :------------: | 
-|1   |1   |1   |
-|0   | 1  | 0  |
-|0   |  1 | 0 |
+|   |   |   |
+|---|---|---|
+| 1 | 1 | 1 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
 
 Bias = -2
+
+Pattern 3:
+
+|   |   |   |
+|---|---|---|
+| 1 | 1 | 1 |
+| 0 | 1 | 0 |
+| 0 | 1 | 0 |
+
+Bias = -2
+
 
